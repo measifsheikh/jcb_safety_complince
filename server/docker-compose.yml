@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/safety_compliance
+      - JWT_SECRET=your_super_secret_jwt_key_here
+      - SECRET_ID=admin123
+      - SECRET_PASSWORD=hashed_password_here
+    depends_on:
+      - mongo
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo_data:

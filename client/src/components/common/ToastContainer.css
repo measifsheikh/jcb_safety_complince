@@ -1,0 +1,367 @@
+/* ToastContainer.css - Professional container for toast notifications */
+
+.toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  overflow-x: visible;
+  pointer-events: none;
+  width: auto;
+  max-width: 500px;
+}
+
+/* Make individual toasts interactive */
+.toast-container > * {
+  pointer-events: auto;
+}
+
+/* Custom scrollbar styling */
+.toast-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.toast-container::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.toast-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  transition: background-color 0.2s;
+}
+
+.toast-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Firefox scrollbar */
+.toast-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+/* Staggered entrance animations */
+.toast-container > .toast:nth-child(1) { animation-delay: 0ms; }
+.toast-container > .toast:nth-child(2) { animation-delay: 80ms; }
+.toast-container > .toast:nth-child(3) { animation-delay: 160ms; }
+.toast-container > .toast:nth-child(4) { animation-delay: 240ms; }
+.toast-container > .toast:nth-child(5) { animation-delay: 320ms; }
+.toast-container > .toast:nth-child(n+6) { animation-delay: 400ms; }
+
+/* Professional exit animation */
+.toast-container .toast.removing {
+  animation: slideOutRight 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    max-height: 200px;
+    margin-bottom: 12px;
+  }
+  50% {
+    transform: translateX(20px) scale(0.98);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(100%) scale(0.95);
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Position variants */
+.toast-container.top-left {
+  top: 24px;
+  left: 24px;
+  right: auto;
+}
+
+.toast-container.top-center {
+  top: 24px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+.toast-container.top-right {
+  top: 24px;
+  right: 24px;
+  left: auto;
+}
+
+.toast-container.bottom-left {
+  bottom: 24px;
+  left: 24px;
+  right: auto;
+  top: auto;
+  flex-direction: column-reverse;
+}
+
+.toast-container.bottom-center {
+  bottom: 24px;
+  left: 50%;
+  right: auto;
+  top: auto;
+  transform: translateX(-50%);
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.toast-container.bottom-right {
+  bottom: 24px;
+  right: 24px;
+  left: auto;
+  top: auto;
+  flex-direction: column-reverse;
+}
+
+/* Position-specific entrance animations */
+.toast-container.top-left .toast,
+.toast-container.bottom-left .toast {
+  animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-container.top-left .toast.removing,
+.toast-container.bottom-left .toast.removing {
+  animation: slideOutLeft 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%) scale(0.95);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(8px) scale(1.02);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    max-height: 200px;
+    margin-bottom: 12px;
+  }
+  50% {
+    transform: translateX(-20px) scale(0.98);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(-100%) scale(0.95);
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.toast-container.top-center .toast,
+.toast-container.bottom-center .toast {
+  animation: slideInDown 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-container.top-center .toast.removing {
+  animation: slideOutUp 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.toast-container.bottom-center .toast.removing {
+  animation: slideOutDown 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-100%) scale(0.95);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(8px) scale(1.02);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    max-height: 200px;
+    margin-bottom: 12px;
+  }
+  100% {
+    transform: translateY(-100%) scale(0.95);
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@keyframes slideOutDown {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    max-height: 200px;
+    margin-bottom: 12px;
+  }
+  100% {
+    transform: translateY(100%) scale(0.95);
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Dark mode scrollbar */
+@media (prefers-color-scheme: dark) {
+  .toast-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .toast-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  .toast-container {
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .toast-container {
+    left: 16px;
+    right: 16px;
+    top: 16px;
+    max-width: none;
+    max-height: calc(100vh - 32px);
+  }
+  
+  .toast-container.top-center,
+  .toast-container.bottom-center {
+    left: 16px;
+    right: 16px;
+    transform: none;
+  }
+  
+  .toast-container.bottom-left,
+  .toast-container.bottom-right,
+  .toast-container.bottom-center {
+    bottom: 16px;
+    top: auto;
+  }
+  
+  .toast-container.top-left,
+  .toast-container.top-right {
+    left: 16px;
+    right: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .toast-container {
+    left: 12px;
+    right: 12px;
+    top: 12px;
+    gap: 8px;
+    max-height: calc(100vh - 24px);
+  }
+  
+  .toast-container.bottom-left,
+  .toast-container.bottom-right,
+  .toast-container.bottom-center {
+    bottom: 12px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .toast-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .toast-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .toast-container .toast {
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .toast-container .toast.removing {
+    animation: fadeOut 0.2s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeOut {
+    from { 
+      opacity: 1; 
+      max-height: 200px; 
+      margin-bottom: 12px; 
+    }
+    to { 
+      opacity: 0; 
+      max-height: 0; 
+      margin-bottom: 0; 
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+/* Print styles */
+@media print {
+  .toast-container {
+    display: none;
+  }
+}
+
+/* Focus management */
+.toast-container:focus-within {
+  outline: none;
+}
+
+/* Ensure proper stacking */
+.toast-container > .toast {
+  position: relative;
+  z-index: 1;
+}
+
+.toast-container > .toast:hover {
+  z-index: 2;
+}

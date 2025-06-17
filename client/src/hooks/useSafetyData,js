@@ -1,0 +1,56 @@
+import { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+
+export const useSafetyData = (filters = {}) => {
+  const { token } = useAuth();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const queryParams = new URLSearchParams();
+      
+      if (filters.startDate) queryParams.append('startDate', filters.startDate);
+      if (filters.endDate) queryParams.append('endDate', filters.endDate);
+      if (filters.area) queryParams.append('area', filters.area);
+      if (filters.department) queryParams.append('department', filters.department);
+      if (filters.isDefaulter !== undefined) queryParams.append('isDefaulter', filters.isDefaulter);
+
+      const url = `/api/safety${queryParams.toString() ? `?${queryParams}` : ''}`;
+      
+      const response = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch safety data');
+      }
+
+      const result = await response.json();
+      setData(result);
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+      setData([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      fetchData();
+    }
+  }, [token, JSON.stringify(filters)]);
+
+  const refetch = () => {
+    fetchData();
+  };
+
+  return { data, loading, error, refetch };
+};

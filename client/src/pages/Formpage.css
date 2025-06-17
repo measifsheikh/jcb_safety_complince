@@ -1,0 +1,456 @@
+/* FormPage.css - Dark Business Theme with Green/Yellow Accents */
+
+/* Custom CSS Variables - Dark Business Theme */
+:root {
+  --form-primary: #22c55e;        /* Green primary */
+  --form-secondary: #16a34a;      /* Darker green */
+  --form-accent: #fbbf24;         /* Yellow accent */
+  --form-success: #10b981;        /* Success green */
+  --form-danger: #ef4444;         /* Error red */
+  --form-warning: #f59e0b;        /* Warning orange */
+  
+  /* Dark theme colors */
+  --form-bg-primary: #0f172a;     /* Very dark blue-gray */
+  --form-bg-secondary: #1e293b;   /* Dark blue-gray */
+  --form-bg-tertiary: #334155;    /* Medium blue-gray */
+  --form-surface: #1e293b;        /* Card background */
+  --form-surface-hover: #334155;  /* Hover state */
+  
+  /* Text colors */
+  --form-text-primary: #f8fafc;   /* Primary white text */
+  --form-text-secondary: #cbd5e1; /* Secondary gray text */
+  --form-text-muted: #94a3b8;     /* Muted text */
+  --form-text-dark: #1e293b;      /* Dark text for light backgrounds */
+  
+  /* Border colors */
+  --form-border: #475569;         /* Default border */
+  --form-border-focus: #22c55e;   /* Focus border */
+  --form-border-hover: #64748b;   /* Hover border */
+  
+  /* Shadows for dark theme */
+  --form-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --form-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Background - Clean dark gradient */
+.form-page-container {
+  background: linear-gradient(135deg, var(--form-bg-primary) 0%, var(--form-bg-secondary) 100%);
+  min-height: 100vh;
+  position: relative;
+  color: var(--form-text-primary);
+}
+
+/* Subtle pattern overlay */
+.form-page-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(34, 197, 94, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Header styling */
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.form-icon-container {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--form-primary), var(--form-secondary));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: var(--form-shadow);
+  transition: transform 0.3s ease;
+}
+
+.form-icon-container:hover {
+  transform: translateY(-2px);
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--form-text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.025em;
+}
+
+.form-subtitle {
+  color: var(--form-text-secondary);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* Main form container */
+.form-card {
+  background: var(--form-surface);
+  border: 1px solid var(--form-border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--form-shadow-lg);
+  position: relative;
+}
+
+/* Top accent border */
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--form-primary), var(--form-accent), var(--form-primary));
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
+  border-radius: 16px 16px 0 0;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Form field styling */
+.form-field {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--form-text-primary);
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+}
+
+.form-label svg {
+  margin-right: 0.5rem;
+  color: var(--form-primary);
+  width: 16px;
+  height: 16px;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--form-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: var(--form-bg-secondary);
+  color: var(--form-text-primary);
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--form-border-focus);
+  background: var(--form-surface-hover);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.form-input:hover,
+.form-select:hover {
+  border-color: var(--form-border-hover);
+  background: var(--form-surface-hover);
+}
+
+.form-input::placeholder {
+  color: var(--form-text-muted);
+}
+
+/* Grid layout for form fields */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Safety equipment section */
+.safety-equipment-section {
+  background: var(--form-bg-secondary);
+  border: 1.5px solid var(--form-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.safety-equipment-title {
+  font-weight: 600;
+  color: var(--form-text-primary);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.safety-equipment-title svg {
+  margin-right: 0.5rem;
+  color: var(--form-primary);
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  background: var(--form-surface);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.checkbox-item:hover {
+  background: var(--form-surface-hover);
+  border-color: var(--form-border-hover);
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--form-primary);
+  margin-right: 0.75rem;
+  cursor: pointer;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: var(--form-text-primary);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.checkbox-emoji {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Strength display */
+.strength-display {
+  background: linear-gradient(135deg, var(--form-bg-secondary), var(--form-surface-hover));
+  border: 1.5px solid var(--form-primary);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--form-primary);
+  position: relative;
+}
+
+.strength-display::before {
+  content: '💪';
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+/* Compliance status */
+.compliance-status {
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border: 1.5px solid transparent;
+}
+
+.compliance-status.compliant {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: var(--form-success);
+  color: var(--form-text-primary);
+}
+
+.compliance-status.non-compliant {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: var(--form-danger);
+  color: var(--form-text-primary);
+}
+
+.compliance-icon {
+  margin-right: 0.75rem;
+  width: 20px;
+  height: 20px;
+}
+
+.compliance-text {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.compliance-description {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  color: var(--form-text-secondary);
+}
+
+/* Submit button */
+.submit-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--form-primary), var(--form-secondary));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--form-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 15px -3px rgba(34, 197, 94, 0.3);
+  background: linear-gradient(135deg, var(--form-secondary), var(--form-primary));
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-button svg {
+  margin-right: 0.5rem;
+  width: 16px;
+  height: 16px;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Message alerts */
+.form-message {
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-message.success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--form-success);
+  color: var(--form-text-primary);
+}
+
+.form-message.error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid var(--form-danger);
+  color: var(--form-text-primary);
+}
+
+.form-message svg {
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .form-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .form-title {
+    font-size: 1.75rem;
+  }
+  
+  .form-icon-container {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .safety-equipment-section {
+    padding: 1rem;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible for better accessibility */
+.form-input:focus-visible,
+.form-select:focus-visible,
+.submit-button:focus-visible,
+.checkbox-item input:focus-visible {
+  outline: 2px solid var(--form-primary);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--form-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--form-border-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--form-primary);
+}
