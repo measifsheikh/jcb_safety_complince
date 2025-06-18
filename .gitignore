@@ -164,6 +164,8 @@ dist
 # Upload directory
 /uploads/*
 !/uploads/.gitkeep
+/server/package-lock.json
+/client/package-lock.json
 
 # macOS
 .DS_Store
