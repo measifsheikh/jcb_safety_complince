@@ -1,0 +1,35 @@
+{
+  "name": "jcb-safety-compliance",
+  "version": "1.0.0",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "start": "node server/server.js",
+    "build": "cd client && npm install && npm run build",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\"",
+    "seed": "node server/scripts/seed.js"
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2",
+  "express": "^4.18.2",
+  "mongoose": "^8.13.2",
+  "dotenv": "^16.5.0",
+  "cors": "^2.8.5",
+  "helmet": "^8.1.0",
+  "jsonwebtoken": "^9.0.2",
+  "bcrypt": "^6.0.0",
+   "bcryptjs": "^3.0.2",
+  "body-parser": "^2.2.0",
+  "cookie-parser": "^1.4.7",
+  "multer": "^1.4.5-lts.2",
+  "express-rate-limit": "^7.5.0",
+  "express-validator": "^7.2.1",
+  "exceljs": "4.4.0"
+},
+"devDependencies": {
+  "concurrently": "^9.1.2",
+  "nodemon": "^3.1.10"
+}
+
+}
